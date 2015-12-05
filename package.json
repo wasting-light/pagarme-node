@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "babel src --out-dir lib",
     "pretest": "npm run compile",
-    "test": "test"
+    "test": "ava"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/grvcoelho/pagarme-node#readme",
   "devDependencies": {
+    "ava": "^0.7.0",
     "babel-cli": "^6.3.13",
     "babel-core": "^6.3.13",
     "babel-preset-es2015": "^6.3.13"
