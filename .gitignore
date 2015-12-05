@@ -1,6 +1,9 @@
 # Project
 lib
 
+# Files
+*.swp
+
 # Logs
 logs
 *.log
