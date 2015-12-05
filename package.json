@@ -1,0 +1,25 @@
+{
+  "name": "pagarme-node",
+  "version": "0.1.0",
+  "description": "Pagar.me integration with Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grvcoelho/pagarme-node.git"
+  },
+  "keywords": [
+    "pagar.me",
+    "payments",
+    "library",
+    "api"
+  ],
+  "author": "Guilherme Rv Coelho <@grvcoelho>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/grvcoelho/pagarme-node/issues"
+  },
+  "homepage": "https://github.com/grvcoelho/pagarme-node#readme"
+}
