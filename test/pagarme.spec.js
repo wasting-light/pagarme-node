@@ -2,7 +2,7 @@ import assert from 'power-assert';
 import is from 'check-types';
 import Pagarme from '../src/pagarme';
 
-describe.only('Pagarme', () => {
+describe('Pagarme', () => {
 	describe('#getApiKey', () => {
 		it('should throw an error when the api key is not passed', () => {
 			assert.throws(() =>	Pagarme.setApiKey(), Error);		
