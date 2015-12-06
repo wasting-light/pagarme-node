@@ -14,7 +14,6 @@ class Pagarme {
 	}
 
 	static unsetApiKey() {
-		// if (process.env.PAGARME_AK) process.env.PAGARME_AK = undefined;
 		delete process.env.PAGARME_AK;
 	}
 }
