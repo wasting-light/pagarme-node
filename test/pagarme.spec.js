@@ -4,7 +4,7 @@ import is from 'is_js';
 import Pagarme from '../src/pagarme';
 
 describe('Pagarme', () => {
-	describe('#getApiKey()', () => {
+	describe('#setApiKey()', () => {
 		it('should throw an error when the api key is not passed', () => {
 			assert.throws(() => {
 				Pagarme.setApiKey();
@@ -24,18 +24,10 @@ describe('Pagarme', () => {
 		});
 	});
 
-	describe.only('#setApiKey()', () => {
-		it('should throw an error when the api key is not existy', () => {
-			process.env.PAGARME_AK = undefined;
-
-			assert.throws(() => {
-				Pagarme.getApiKey();	
-			});
-		});	
-
+	describe('#getApiKey()', () => {
 		it('should return an non empty string as the api key', () => {
 			Pagarme.setApiKey('ak_test_TSgC3nvXtdYnDoGKgNLIOfk3TFfkl9');
-			
+
 			let api_key = Pagarme.getApiKey();
 
 			assert.ok(() => {
