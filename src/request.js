@@ -13,19 +13,38 @@ class Request {
 	}
 
 	get(path, query) {
+		return request
+			.get(this.api_uri + path)
+			.json()
+			.auth(this.api_key, 'x')
+			.qs(query);
 	
 	}
 
 	post(path, body, query) {
-	
+		return request
+			.post(this.api_uri + path)
+			.json()
+			.auth(this.api_key, 'x')
+			.qs(query)
+			.body(body);	
 	}
 
 	put(path, body, query) {
-	
+		return request
+			.put(this.api_uri + path)
+			.json()
+			.auth(this.api_key, 'x')
+			.qs(query)
+			.body(body);	
 	}
 
 	delete(path, query) {
-	
+		return request
+			.delete(this.api_uri + path)
+			.json()
+			.auth(this.api_key, 'x')
+			.qs(query);	
 	}
 }
 
