@@ -22,12 +22,18 @@ class Request {
 	}
 
 	post(path, body, query) {
+		let options = {
+			body: body,
+			qs: query,
+			json: true,
+			auth: {
+				user: this.api_key, 
+				pass: 'x'
+			}
+		};
+		
 		return request
-			.post(this.api_uri + path)
-			.json()
-			.auth(this.api_key, 'x')
-			.qs(query)
-			.body(body);	
+			.post(this.api_uri + path, options);
 	}
 
 	put(path, body, query) {
