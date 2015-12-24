@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "babel src --out-dir lib",
     "prepublish": "npm run compile",
-    "test": "mocha --compilers js:babel-core/register --timeout 30000 test/**/*.spec.js"
+    "test": "mocha --compilers js:babel-core/register --timeout 30000 test/*.js"
   },
   "repository": {
     "type": "git",
