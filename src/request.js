@@ -8,49 +8,50 @@ class Request {
 			throw new Error();	
 		}
 
-		this.api_key = Pagarme.getApiKey();
-		this.api_uri = 'https://api.pagar.me/1/';
+		this.apiKey = Pagarme.getApiKey();
+		this.apiUri = 'https://api.pagar.me/1/';
+
+		this.request = request.defaults({
+			auth: {
+				user: this.apiKey,
+				pass: 'x'
+			},
+			json: true
+		});
 	}
 
 	get(path, query) {
-		return request
-			.get(this.api_uri + path)
-			.json()
-			.auth(this.api_key, 'x')
-			.qs(query);
-	
+		let options = {
+			qs: query
+		};
+
+		return this.request.get(this.apiUri + path, options);
 	}
 
 	post(path, body, query) {
 		let options = {
 			body: body,
-			qs: query,
-			json: true,
-			auth: {
-				user: this.api_key, 
-				pass: 'x'
-			}
+			qs: query
 		};
-		
-		return request
-			.post(this.api_uri + path, options);
+
+		return this.request.post(this.apiUri + path, options);
 	}
 
 	put(path, body, query) {
-		return request
-			.put(this.api_uri + path)
-			.json()
-			.auth(this.api_key, 'x')
-			.qs(query)
-			.body(body);	
+		let options = {
+			body: body,
+			qs: query
+		};
+
+		return this.request.put(this.apiUri + path, options);
 	}
 
 	delete(path, query) {
-		return request
-			.delete(this.api_uri + path)
-			.json()
-			.auth(this.api_key, 'x')
-			.qs(query);	
+		let options = {
+			qs: query
+		};
+
+		return this.request.del(this.apiUri + path, options);
 	}
 }
 

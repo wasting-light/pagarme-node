@@ -5,7 +5,7 @@ import Request from '../src/request';
 import Pagarme from '../src/pagarme';
 
 describe.only('Request', () => {
-	beforeEach(() => Pagarme.setApiKey('123'));
+	beforeEach(() => Pagarme.setApiKey('ak_test_TSgC3nvXtdYnDoGKgNLIOfk3TFfkl9'));
 
 	describe('#constructor', () => {
 		it('should throw an error when no api key is found', () => {
