@@ -14,5 +14,22 @@ describe.only('Plan', () => {
 			assert.throws(() =>	new Plan(), Error);
 		});
 	});
+
+	describe('#findAll', () => {
+		it('should return an array of plans', (done) => {
+			let plan = new Plan()
+
+			plan
+				.findAll()
+				.then(plans => {
+					console.log(plans);
+					assert.ok(is.not.undefined(plans));
+					assert.ok(is.array(plans));
+					assert.ok(is.equal(plans[0].object, 'plan'));
+					done();
+				})
+				.catch(err => done(err));
+		});
+	});
 });
 

@@ -18,7 +18,8 @@ class Plan {
 	}
 
 	findAll(query) {
-
+		return this.request
+			.get('plans', query);	
 	}
 
 	find(id) {
