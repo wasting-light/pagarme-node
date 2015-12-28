@@ -22,7 +22,6 @@ describe.only('Plan', () => {
 			plan
 				.findAll()
 				.then(plans => {
-					console.log(plans);
 					assert.ok(is.not.undefined(plans));
 					assert.ok(is.array(plans));
 					assert.ok(is.equal(plans[0].object, 'plan'));
