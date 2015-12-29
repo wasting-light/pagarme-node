@@ -4,7 +4,7 @@ import is from 'check-types'
 import Pagarme from '../src/pagarme';
 import Plan from '../src/plan';
 
-describe.only('Plan', () => {
+describe('Plan', () => {
 	beforeEach(() => Pagarme.setApiKey('ak_test_TSgC3nvXtdYnDoGKgNLIOfk3TFfkl9'));
 
 	describe('#constructor', () => {
@@ -13,6 +13,18 @@ describe.only('Plan', () => {
 
 			assert.throws(() =>	new Plan(), Error);
 		});
+
+		it('should create a plan object', () => {
+			let plan = new Plan({
+				amount: 1000,
+				days: 30,
+				name: 'test-api'
+			});	
+
+			assert.ok(is.equal(plan.amount, 1000));
+			assert.ok(is.equal(plan.days, 30));
+			assert.ok(is.equal(plan.name, 'test-api'));
+		});
 	});
 
 	describe('#findAll', () => {
@@ -20,14 +32,14 @@ describe.only('Plan', () => {
 			let plan = new Plan()
 
 			plan
-				.findAll()
-				.then(plans => {
-					assert.ok(is.not.undefined(plans));
-					assert.ok(is.array(plans));
-					assert.ok(is.equal(plans[0].object, 'plan'));
-					done();
-				})
-				.catch(err => done(err));
+			.findAll()
+			.then(plans => {
+				assert.ok(is.not.undefined(plans));
+				assert.ok(is.array(plans));
+				assert.ok(is.equal(plans[0].object, 'plan'));
+				done();
+			})
+			.catch(err => done(err));
 		});
 	});
 });
