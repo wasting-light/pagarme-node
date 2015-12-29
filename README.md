@@ -3,4 +3,4 @@
 Pagar.me integration with Node.js
 
 ## License
-[MIT](https://github.com/grvcoelho/css/blob/master/LICENSE) &copy; 2015
+[MIT](https://github.com/grvcoelho/pagarme-node/blob/master/LICENSE) &copy; 2015
