@@ -15,8 +15,29 @@ class Plan {
 		request = new Request();
 	}
 
-	save() {
+	create() {
+        if (is.undefined(this.amount)) {
+            throw new Error();
+        }
 
+        if (is.undefined(this.days)) {
+            throw new Error(); 
+        }
+
+        if (is.undefined(this.name)) {
+            throw new Error();
+        }
+
+        if (is.not.undefined(this.id)) {
+            throw new Error();
+        }
+
+        return request
+            .post('plans', this)
+            .then(plan => {
+                Object.assign(this, plan)
+                return plan;
+            });
 	}
 
 	findAll(query) {
@@ -25,6 +46,7 @@ class Plan {
 	}
 
 	find(id) {
+
 	}
 
 	update() {
