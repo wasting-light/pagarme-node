@@ -46,6 +46,18 @@ class Plan {
 	}
 
 	find(id) {
+        id = id || this.id;
+
+        if (is.undefined(id)) {
+            throw new Error();
+        }
+
+        return request
+            .get('plans/' + id, this)
+            .then(plan => {
+                Object.assign(this, plan)
+                return plan;
+            });
 
 	}
 
