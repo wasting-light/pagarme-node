@@ -61,8 +61,9 @@ class Plan {
 
 	}
 
-	update() {
-	
+	update(properties) {
+        return request
+            .put('plans/' + this.id, properties);    
 	}
 }
 
