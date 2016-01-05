@@ -75,7 +75,7 @@ test('find a plan passing an id', async t => {
     t.is(p.id, 25937);
 });
 
-test.only('find a plan with no id', t => {
+test('find a plan with no id', t => {
     let plan = new Plan();
 
     t.throws(plan.find());
