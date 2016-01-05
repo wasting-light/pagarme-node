@@ -1,140 +1,82 @@
-import assert from 'power-assert';
-import is from 'check-types'
+import 'babel-register';
+import is from 'check-types';
+import test from 'ava';
 
 import Pagarme from '../src/pagarme';
 import Plan from '../src/plan';
 
-describe.only('Plan', () => {
-    beforeEach(() => Pagarme.setApiKey('ak_test_TSgC3nvXtdYnDoGKgNLIOfk3TFfkl9'));
+test.beforeEach(t => Pagarme.setApiKey('ak_test_TSgC3nvXtdYnDoGKgNLIOfk3TFfkl9'));
 
-    describe('#constructor', () => {
-     it('should throw an error when no api key is found', () => {
-         Pagarme.unsetApiKey();
-
-         assert.throws(() => new Plan(), Error);
-     });
-
-     it('should create a plan object', () => {
-         let plan = new Plan({
-             amount: 1000,
-             days: 30,
-             name: 'test-api'
-         }); 
-
-         assert.equal(plan.amount, 1000);
-         assert.equal(plan.days, 30);
-         assert.equal(plan.name, 'test-api');
-     });
+test('create a plan', async t => {
+    let plan = new Plan({
+        amount: 1000,
+        days: 30,
+        name: 'test-api'
     });
 
-    describe('#create', () => {
-        it('should create a plan and return a plan object', (done) => {
-         let plan = new Plan({
-             amount: 1000,
-             days: 30,
-             name: 'test-api'
-         }); 
+    let p = await plan.create();
 
-            plan.create()
-                .then(plan => {
-                    assert.ok(is.not.undefined(plan));
-                    assert.ok(is.object(plan));
-                    assert.equal(plan.object, 'plan');
-                    assert.equal(plan.amount, 1000);
-                    assert.equal(plan.days, 30);
-                    assert.equal(plan.name, 'test-api');
-                    done();
-                })
-                .catch(err => done(err));
-        });
-
-        it('should throw an error when the mandatory fields are undefined', () => {
-            let plan = new Plan({});
-
-            assert.throws(() => plan.create());
-        });
-
-        it('should throw an error when the plan id is not undefined', () => {
-            let plan = new Plan({
-                amount: 1000,
-                days: 30,
-                name: 'test-api',
-                id: 25000
-            });
-
-            assert.throws(() => plan.create());
-        });
-    });
-
-    describe('#findAll', () => {
-     it('should return an array of plans', (done) => {
-         let plan = new Plan()
-
-         plan
-         .findAll()
-         .then(plans => {
-             assert.ok(is.not.undefined(plans));
-             assert.ok(is.array(plans));
-             assert.equal(plans[0].object, 'plan');
-             done();
-         })
-         .catch(err => done(err));
-     });
-    });
-
-    describe('#find', () => {
-        it('should return a specific plan when the plan id is not undefined', (done) => {
-            let plan = new Plan({
-                amount: 1000,
-                days: 30,
-                name: 'test-api',
-                id: 25937
-            });
-
-            plan.find()
-                .then(plan => {
-                    assert.ok(is.not.undefined(plan));
-                    assert.ok(is.object(plan));
-                    assert.equal(plan.object, 'plan');
-                    assert.equal(plan.id, 25937);
-                    assert.equal(plan.amount, 1000);
-                    assert.equal(plan.days, 30);
-                    assert.equal(plan.name, 'test-api');
-                    done();
-                })
-                .catch(err => done(err));
-        });
-
-        it('should return a specific plan when the id is passed as an argument', (done) => {
-            let plan = new Plan({
-                amount: 1000,
-                days: 30,
-                name: 'test-api'
-            });
-
-            plan.find(25937)
-                .then(plan => {
-                    assert.ok(is.not.undefined(plan));
-                    assert.ok(is.object(plan));
-                    assert.equal(plan.object, 'plan');
-                    assert.equal(plan.id, 25937);
-                    assert.equal(plan.amount, 1000);
-                    assert.equal(plan.days, 30);
-                    assert.equal(plan.name, 'test-api');
-                    done();
-                })
-                .catch(err => done(err));
-        });
-
-        it('should throw an error when the id is undefined', () => {
-            let plan = new Plan({
-                amount: 1000,
-                days: 30,
-                name: 'test-api'
-            });
-
-            assert.throws(() => plan.find());
-        });
-    });
+    t.ok(is.not.undefined(p));
+    t.ok(is.object(p));
+    t.is(p.object, 'plan');
+    t.is(p.amount, 1000);
+    t.is(p.days, 30);
+    t.is(p.name, 'test-api');
 });
 
+test('create a plan without the mandatory fields', t => {
+    let plan = new Plan();
+
+    t.throws(plan.create());
+});
+
+test('create a plan with an id', t => {
+    let plan = new Plan({
+         amount: 1000,
+        days: 30,
+        name: 'test-api',
+        id: 25000
+    });
+
+    t.throws(plan.create());
+});
+
+test('find all plans', async t => {
+    let plan = new Plan();
+
+    let plans = await plan.findAll();
+
+    t.ok(is.not.undefined(plans));
+    t.ok(is.array(plans));
+    t.is(plans[0].object, 'plan');
+});
+
+test('find a plan with an id', async t => {
+    let plan = new Plan({
+        id: 25937
+    });
+
+    let p = await plan.find(); 
+
+    t.ok(is.not.undefined('object'));
+    t.ok(is.object(p));
+    t.is(p.object, 'plan');
+    t.is(p.id, 25937);
+});
+
+test('find a plan passing an id', async t => {
+    let plan = new Plan();
+
+    let p = await plan.find(25937); 
+
+    t.ok(is.not.undefined('object'));
+    t.ok(is.object(p));
+    t.is(p.object, 'plan');
+    t.is(p.id, 25937);
+});
+
+test.only('find a plan with no id', t => {
+    let plan = new Plan();
+
+    t.throws(plan.find());
+});
