@@ -6,16 +6,16 @@ import Request from './request';
 let request;
 
 class Plan {
-	constructor(plan) {
-		if (is.undefined(Pagarme.getApiKey())) {
-			throw new Error();
-		}
+    constructor(plan) {
+        if (is.undefined(Pagarme.getApiKey())) {
+            throw new Error();
+        }
 
-		Object.assign(this, plan);
-		request = new Request();
-	}
+        Object.assign(this, plan);
+        request = new Request();
+    }
 
-	create() {
+    create() {
         if (is.undefined(this.amount)) {
             throw new Error();
         }
@@ -32,39 +32,35 @@ class Plan {
             throw new Error();
         }
 
-        return request
-            .post('plans', this)
+        return request.post('plans', this)
             .then(plan => {
                 Object.assign(this, plan)
                 return plan;
             });
-	}
+    }
 
-	findAll(query) {
-		return request
-			.get('plans', query);	
-	}
+    findAll(query) {
+        return request.get('plans', query);	
+    }
 
-	find(id) {
+    find(id) {
         id = id || this.id;
 
         if (is.undefined(id)) {
             throw new Error();
         }
 
-        return request
-            .get('plans/' + id, this)
+        return request.get('plans/' + id, this)
             .then(plan => {
                 Object.assign(this, plan)
                 return plan;
             });
 
-	}
+    }
 
-	update(properties) {
-        return request
-            .put('plans/' + this.id, properties);    
-	}
+    update(properties) {
+        return request.put('plans/' + this.id, properties);    
+    }
 }
 
 export default Plan;
