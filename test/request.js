@@ -1,17 +1,14 @@
-import assert from 'power-assert';
-import is from 'check-types'
+import 'babel-register';
+import is from 'check-types';
+import test from 'ava';
 
-import Request from '../src/request';
 import Pagarme from '../src/pagarme';
+import Request from '../src/request';
 
-describe('Request', () => {
-	beforeEach(() => Pagarme.setApiKey('ak_test_TSgC3nvXtdYnDoGKgNLIOfk3TFfkl9'));
+test.beforeEach(t => Pagarme.setApiKey('ak_test_TSgC3nvXtdYnDoGKgNLIOfk3TFfkl9'));
 
-	describe('#constructor', () => {
-		it('should throw an error when no api key is found', () => {
-			Pagarme.unsetApiKey();
+test('create a request with no api key', t => {
+    Pagarme.unsetApiKey();
 
-			assert.throws(() =>	new Request(), Error);
-		});
-	});
+    t.throws(() => new Request());
 });
