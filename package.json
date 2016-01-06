@@ -6,7 +6,7 @@
     "scripts": {
         "compile": "babel src --out-dir lib",
         "prepublish": "npm run compile",
-        "test": "ava test/*.js"
+        "test": "ava --verbose test/*.js"
     },
     "repository": {
         "type": "git",
