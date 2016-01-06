@@ -1,34 +1,23 @@
-import assert from 'power-assert';
+import 'babel-register';
 import is from 'check-types';
+import test from 'ava';
+
 import Pagarme from '../src/pagarme';
 
-describe('Pagarme', () => {
-	describe('#getApiKey', () => {
-		it('should throw an error when the api key is not passed', () => {
-			assert.throws(() =>	Pagarme.setApiKey(), Error);		
-		});
+test.beforeEach(t => Pagarme.setApiKey('ak_test_TSgC3nvXtdYnDoGKgNLIOfk3TFfkl9'));
 
-		it('should throw an error when the api key is not a string', () => {
-			assert.throws(() =>	Pagarme.setApiKey([20, 30]), Error);		
-		});
-	});
-
-	describe('#setApiKey', () => {
-		before(() => Pagarme.setApiKey('ak_test_TSgC3nvXtdYnDoGKgNLIOfk3TFfkl9'));
-
-		it('should return an non empty string as the api key', () => {
-			assert.ok(is.string(Pagarme.getApiKey()));
-		});
-	});
-
-	describe('#unsetApiKey', () => {
-		before(() => Pagarme.setApiKey('ak_test_TSgC3nvXtdYnDoGKgNLIOfk3TFfkl9'));
-
-		it('should unset the api key', () => {
-			Pagarme.unsetApiKey();		
-
-			assert.ok(is.undefined(Pagarme.getApiKey()));
-		});	
-	});
+test('set an api key', t => {
+    t.doesNotThrow(() => Pagarme.setApiKey('ak_test_TSgC3nvXtdYnDoGKgNLIOfk3TFfkl9'));
 });
 
+test('set an empty api key', t => {
+    t.throws(() => Pagarme.setApiKey());
+});
+
+test('set a non-string api key', t => {
+    t.throws(() => Pagarme.setApiKey([2, 3]));
+});
+
+test('get an api key', t => {
+    t.is(Pagarme.getApiKey(), 'ak_test_TSgC3nvXtdYnDoGKgNLIOfk3TFfkl9');
+});
