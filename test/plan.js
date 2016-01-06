@@ -63,7 +63,7 @@ test('find a plan with an id', async t => {
     t.is(p.object, 'plan');
     t.is(p.id, 25937);
 });
-//
+
 test('find a plan passing an id', async t => {
     let plan = new Plan();
 
