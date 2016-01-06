@@ -27,7 +27,7 @@ test('create a plan', async t => {
 test('create a plan without the mandatory fields', t => {
     let plan = new Plan();
 
-    t.throws(plan.create());
+    t.throws(() => plan.create());
 });
 
 test('create a plan with an id', t => {
@@ -38,7 +38,7 @@ test('create a plan with an id', t => {
         id: 25000
     });
 
-    t.throws(plan.create());
+    t.throws(() => plan.create());
 });
 
 test('find all plans', async t => {
@@ -63,7 +63,7 @@ test('find a plan with an id', async t => {
     t.is(p.object, 'plan');
     t.is(p.id, 25937);
 });
-
+//
 test('find a plan passing an id', async t => {
     let plan = new Plan();
 
@@ -78,5 +78,5 @@ test('find a plan passing an id', async t => {
 test('find a plan with no id', t => {
     let plan = new Plan();
 
-    t.throws(plan.find());
+    t.throws(() => plan.find());
 });
