@@ -7,29 +7,25 @@ let request;
 
 class Plan {
     constructor(plan) {
-        if (is.undefined(Pagarme.getApiKey())) {
-            throw new Error();
-        }
-
         Object.assign(this, plan);
         request = new Request();
     }
 
     create() {
         if (is.undefined(this.amount)) {
-            throw new Error();
+            throw new Error('The plan must have the property amount');
         }
 
         if (is.undefined(this.days)) {
-            throw new Error(); 
+            throw new Error('The plan must have the property days'); 
         }
 
         if (is.undefined(this.name)) {
-            throw new Error();
+            throw new Error('The plan must have the property name');
         }
 
         if (is.not.undefined(this.id)) {
-            throw new Error();
+            throw new Error('The plan can\'t have the property id');
         }
 
         return request.post('plans', this)
@@ -47,7 +43,7 @@ class Plan {
         id = id || this.id;
 
         if (is.undefined(id)) {
-            throw new Error();
+            throw new Error('You must provide an id');
         }
 
         return request.get('plans/' + id, this)
