@@ -5,7 +5,7 @@ import Pagarme from './pagarme';
 class Request {
 	constructor() {
 		if (is.undefined(Pagarme.getApiKey())) {
-			throw new Error();	
+			throw new Error('You must set an api key');	
 		}
 
 		this.apiKey = Pagarme.getApiKey();
