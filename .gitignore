@@ -1,6 +1,14 @@
 # Project
 lib
 
+# Test Coverage
+.nyc_output
+coverage
+!node_modules/spawn-wrap
+test/build/
+.self_coverage
+*.covered.js
+
 # Files
 *.swp
 
