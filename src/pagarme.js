@@ -1,4 +1,4 @@
-import is from 'check-types'; 
+import is from 'check-types';
 
 class Pagarme {
 	static setApiKey(key) {

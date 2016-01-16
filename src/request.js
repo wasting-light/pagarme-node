@@ -5,7 +5,7 @@ import Pagarme from './pagarme';
 class Request {
 	constructor() {
 		if (is.undefined(Pagarme.getApiKey())) {
-			throw new Error('You must set an api key');	
+			throw new Error('You must set an api key');
 		}
 
 		this.apiKey = Pagarme.getApiKey();
@@ -21,7 +21,7 @@ class Request {
 	}
 
 	get(path, query) {
-		let options = {
+		const options = {
 			qs: query
 		};
 
@@ -29,8 +29,8 @@ class Request {
 	}
 
 	post(path, body, query) {
-		let options = {
-			body: body,
+		const options = {
+			body,
 			qs: query
 		};
 
@@ -38,8 +38,8 @@ class Request {
 	}
 
 	put(path, body, query) {
-		let options = {
-			body: body,
+		const options = {
+			body,
 			qs: query
 		};
 
@@ -47,7 +47,7 @@ class Request {
 	}
 
 	delete(path, query) {
-		let options = {
+		const options = {
 			qs: query
 		};
 
