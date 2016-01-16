@@ -1,7 +1,7 @@
 # pagarme-node 
 
 [![Build Status](https://travis-ci.org/grvcoelho/pagarme-node.svg?branch=master)](https://travis-ci.org/grvcoelho/pagarme-node)
-[![Coverage Status](https://coveralls.io/repos/grvcoelho/pagarme-node/badge.svg?branch=test-coverage&service=github)](https://coveralls.io/github/grvcoelho/pagarme-node)
+[![Coverage Status](https://coveralls.io/repos/grvcoelho/pagarme-node/badge.svg?branch=master&service=github)](https://coveralls.io/github/grvcoelho/pagarme-node)
 
 Pagar.me integration with Node.js
 
