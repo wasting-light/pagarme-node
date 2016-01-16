@@ -24,8 +24,29 @@ test('create a plan', async t => {
 	t.is(p.name, 'test-api');
 });
 
-test('create a plan without the mandatory fields', t => {
-	const plan = new Plan();
+test('create a plan without the amount property', t => {
+	const plan = new Plan({
+		days: 30,
+		name: 'test-api'
+	});
+
+	t.throws(() => plan.create());
+});
+
+test('create a plan without the days property', t => {
+	const plan = new Plan({
+		amount: 1000,
+		name: 'test-api'
+	});
+
+	t.throws(() => plan.create());
+});
+
+test('create a plan without the name property', t => {
+	const plan = new Plan({
+		amount: 1000,
+		days: 30
+	});
 
 	t.throws(() => plan.create());
 });

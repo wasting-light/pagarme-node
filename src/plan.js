@@ -51,10 +51,6 @@ class Plan {
 				return plan;
 			});
 	}
-
-	update(properties) {
-		return request.put('plans/' + this.id, properties);
-	}
 }
 
 export default Plan;
