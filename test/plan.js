@@ -106,7 +106,7 @@ test.only('update a plan', async t => {
 	let plan = new Plan({
 		amount: 1000,
 		days: 30,
-		name: 'test-api',
+		name: 'test-api'
 	});
 
 	plan = await plan.create();
