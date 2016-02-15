@@ -101,3 +101,21 @@ test('find a plan with no id', t => {
 
 	t.throws(() => plan.find());
 });
+
+test.only('update a plan', async t => {
+	let plan = new Plan({
+		amount: 1000,
+		days: 30,
+		name: 'test-api',
+	});
+
+	plan = await plan.create();
+
+	const p = await plan.update({
+		name: 'test-api-updated',
+		trial_days: 14
+	});
+
+	t.is(p.name, 'test-api-updated');
+	t.is(p.trial_days, 14);
+});

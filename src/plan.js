@@ -30,7 +30,7 @@ class Plan {
 		return request.post('plans', this)
 			.then(plan => {
 				Object.assign(this, plan);
-				return plan;
+				return this;
 			});
 	}
 
@@ -48,8 +48,16 @@ class Plan {
 		return request.get('plans/' + id, this)
 			.then(plan => {
 				Object.assign(this, plan);
-				return plan;
+				return this;
 			});
+	}
+
+	update(properties) {
+		if (is.undefined(this.id)) {
+			throw new Error('The plan must have the id property');
+		}
+
+		return request.put('plans/' + this.id, properties);
 	}
 }
 
