@@ -102,7 +102,7 @@ test('find a plan with no id', t => {
 	t.throws(() => plan.find());
 });
 
-test.only('update a plan', async t => {
+test('update a plan', async t => {
 	let plan = new Plan({
 		amount: 1000,
 		days: 30,
