@@ -6,7 +6,7 @@
   "scripts": {
     "test": "nyc ava",
     "coverage": "npm test && nyc report --reporter=text-lcov | coveralls",
-	"lint": "eslint src/*.js test/*.js"
+    "lint": "eslint src/*.js test/*.js"
   },
   "repository": {
     "type": "git",
@@ -34,13 +34,11 @@
     "coveralls": "^2.11.6",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^3.1.0",
-    "mocha": "^2.3.4",
     "nyc": "^5.3.0",
     "power-assert": "^1.2.0"
   },
   "dependencies": {
     "check-types": "^5.0.0",
-    "lodash": "^3.10.1",
     "request-promise": "^1.0.2"
   }
 }
